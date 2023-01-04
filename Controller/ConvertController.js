@@ -1,7 +1,7 @@
 import ConvertService from "../Service/ConvertService.js";
 
 class ConvertController {
-    async getConvertText(link, language = 'en-US') {
+    async getConvertText(link, language = 'ru') {
         try {
             if (!link) {
                 console.log("Не найдена ссылка на аудиофайл");

@@ -5,11 +5,13 @@ const deepgram = new Deepgram(deepgramApiKey);
 
 class ConvertService {
     async getConvertText(link, language) {
-        const res = await deepgram.transcription.preRecorded({ url: link }, { punctuate: true, model: 'general', language: language, tier: 'enhanced' })
-        console.log(res);
-
-        // deepgram.transcription.preRecorded({ url: link }, { punctuate: true, model: 'general', language: language, tier: 'enhanced' })
-        //     .then(transcription => console.log(transcription.results.channels[0].alternatives[0]));
+        const params = [
+            { url: link },
+            { punctuate: true, model: 'general', language: language, tier: 'base' }
+        ]
+        const res = await deepgram.transcription.preRecorded(...params);
+        const text = res.results.channels[0].alternatives[0].transcript;
+        return text;
     }
 }
 
